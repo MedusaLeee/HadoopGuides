@@ -11,8 +11,8 @@ import java.net.URI;
 
 public class FileCopyWithProgress {
     public static void main(String[] args) throws IOException {
-        final String localSrc = "/tmp/bigdata.pdf";
-        final String hdfsUri = "file:///tmp/log/bigdata.pdf";
+        final String localSrc = "/tmp/log/bigdata.pdf";
+        final String hdfsUri = "hdfs://master:8020/test/bigdata.pdf";
         InputStream in = new BufferedInputStream(new FileInputStream(localSrc));
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(hdfsUri), conf);
@@ -20,7 +20,7 @@ public class FileCopyWithProgress {
             // progress只有在Hadoop文件系统是HDFS的时候才调用，local,S3,FTP都不会调用
             @Override
             public void progress() {
-                System.out.println(".");
+                System.out.print(">");
             }
         });
         IOUtils.copyBytes(in, out, 4096, true);

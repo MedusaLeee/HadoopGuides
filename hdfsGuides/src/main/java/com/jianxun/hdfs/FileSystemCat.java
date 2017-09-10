@@ -11,7 +11,7 @@ import java.net.URI;
 
 public class FileSystemCat {
     public static void main(String[] args) throws IOException {
-        final String uri = "file:///tmp/log/aa.txt";
+        final String uri = "hdfs://master:8020/user/tom/aa.txt";
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(uri), conf);
         InputStream in = null;
