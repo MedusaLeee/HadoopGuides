@@ -43,7 +43,7 @@ HDFS集群运行的节点有两类：管理节点（namenode）和工作节点�
 
 通常datanode都是从磁盘中读取块。对于访问很频繁的文件，其对应的块可以被显示的缓存在datanode的内存中，以堆外缓存（off-heap block cache）的形式存在。默认是一个块仅缓存在一个datanode的内存中，也可以根据每个文件配置datanode的数量，来提高读操作性能。
 
-# 4、联邦HDFS（拓展）
+# 4、联邦HDFS（federation）
 
 namenode在内存中保存文件系统中每个文件和每个数据块的引用关系，对于一个拥有大量文件的超大集群来说，内存将成为限制系统横向扩展的瓶颈。
 
@@ -57,10 +57,6 @@ namenode在内存中保存文件系统中每个文件和每个数据块的引用
 
 # 5 、HDFS的高可用
 
-Hadoop2 增加了对HDFS高可用性的支持。在这一实现中，配置了一对 活动-备用（active-standby）namenode。当active namenode失效后，standby namenode就会接管它的任务并开始服务来自客户端的请求，对客户端来说不会有明显的中断。
-
-
-
-
-
-
+Hadoop2 增加了对HDFS高可用性的支持。
+第一种配置了一对 活动-备用（active-standby）namenode。当active namenode失效后，standby namenode就会接管它的任务并开始服务来自客户端的请求，对客户端来说不会有明显的中断。
+第二种通过federation机制也就是联邦HDFS可以将多个namenode组成一个集群，外部可通过viewfs://URI来访问。Hadoop会通过你访问的路径来自动选择集群。
