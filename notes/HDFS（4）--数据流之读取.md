@@ -1,7 +1,7 @@
 HDFS文件读取步骤是怎么样的？我们通过下图中的步骤顺序一步步梳理，然后再看这样设计的好处。
 ![hdfs-read.png](https://github.com/MedusaLeee/HadoopGuides/blob/master/notes/images/hdfs-read.png)
 
-#步骤（Java客户端）
+# 步骤（Java客户端）
 
 ### 1. open
 
